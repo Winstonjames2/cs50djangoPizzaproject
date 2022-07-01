@@ -1,0 +1,29 @@
+.account{
+    float: right;margin-right: 1%;
+    font-size:0.8em;
+}
+.account:hover{
+    color:blue;cursor: pointer;
+}
+#user2{
+    font-size:0.6em;text-align: right;margin-right:7%;
+}
+.nav_bar{
+    font-weight:bold;font-size:1.1em;
+    border:1px solid black;font-family:'Times New Roman', Times, serif;
+    background-color: rgb(0, 128, 85);color:white
+}
+.items{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color:azure;font-size:1em;border-left: 1px solid black;
+}
+.BTN{
+    color:white;cursor: pointer;background-color: white;font-weight: bold;
+    background-color: red;border: none;
+}
+.BTN:hover{
+    color:white;background-color:rgb(194, 0, 0);
+}
+a:hover{
+    text-decoration: underline;
+}

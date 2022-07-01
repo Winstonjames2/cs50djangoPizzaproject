@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>PIZZA</title>
+{% endblock %}
+
+{% block body %}
+    <h2>Pizza Restaurant</h2><hr/>
+    <div class="container">
+        {% for message in messages %}
+            <div class="bg-danger">{{message}}</div>
+        {% endfor %}<br/>
+        <div>Already Have An Account?  <a href="{% url 'login' %}">Click Here To Login</a></div><br/><br/>
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Enter Username" required minlength="4" maxlength="15"/><br/><br/>
+            <input type="email" name="email" placeholder="Enter Email" required/><br/><br/>
+            <input type="text" name="fname" placeholder="Enter First Name(Optional)"/><br/><br/>
+            <input type="text" name="lname" placeholder="Enter Last Name(Optional)"/><br/><br/>
+            <input type="password" name="password" class="input" placeholder="Enter Password" required minlength="4"/><br/><br/>
+            <input type="password" name="password0" class="input" placeholder="Enter Password Again" required minlength="4"/><br/><br/>
+            <input type="submit" class="btn btn-primary"/>
+        </form>
+    </div>
+{% endblock %}
