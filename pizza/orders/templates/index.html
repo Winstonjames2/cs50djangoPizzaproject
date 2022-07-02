@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block head %}
+    {% load static %}
+    <title>PIZZA</title>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <script src="{% static 'script/script.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <h2 style="margin:2px;">Pizza Restaurant
+        <a href="{% url 'shopping' %}">
+            <span class="account">Cart <i class="bi bi-minecart"></i><span id="cart"></span></span>
+        </a>
+        <span class="account user" title="YOUR USERNAME"><i class="bi bi-person"></i>{{user}}</span>
+        <div id="user2"><a title="LOGOUT" href="{% url 'logout' %}">Logout</a></div>
+    </h2>
+    <hr>
+    <h3 class="text-center bg-danger">MENU</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-3 text-center nav_bar">Pizza Menu</div>
+            <div class="col-3 text-center nav_bar">Feature</div>
+            <div class="col-2 text-center nav_bar">Size</div>
+            <div class="col-2 text-center nav_bar">Price</div>
+            <!-- <div class="col-2 text-center nav_bar" id="smith">_____</div> -->
+        </div><br>
+        <div>
+            {% for food in foods %}
+                <form method="post" action="{% url 'cart' %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <input type="hidden" value="{{food.id}}" name="food_id" class="food_id"/>
+                        <div class="col-3 text-center items">{{food.foodtype}}</div>
+                        <div class="col-3 text-center items">{{food.feature}}</div>
+                        <div class="col-2 text-center items">{{food.size}}</div>
+                        <div class="col-2 text-center items">${{food.price}}</div>
+                        <button class="col-2 text-center items BTN" id="smith{{food.id}}">Add To Cart</button>
+                    </div><br>
+                </form>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

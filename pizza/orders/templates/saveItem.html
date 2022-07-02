@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block head %}
+    {% load static %}
+    <title>PIZZA</title>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    <script src="{% static 'script/script2.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div style="background-color:rgb(132, 132, 252);">
+    <h2 style="margin:2px;">Pizza Restaurant
+        <a href="{% url 'index' %}">
+            <span class="account">Home</span>
+        </a>
+        <span class="account user" title="YOUR USERNAME"><i class="bi bi-person"></i>{{user}}</span>
+        <div id="user2"><a title="LOGOUT" href="{% url 'logout' %}">Logout</a></div>
+    </h2>
+    <hr>
+    <h3 class="text-center" style="background-color:lightblue">Your Orders</h3>
+        <div class="container">
+        <div class="row">
+            <div class="col-3 text-center nav_bar">Pizza Menu</div>
+            <div class="col-3 text-center nav_bar">Feature</div>
+            <div class="col-2 text-center nav_bar">Size</div>
+            <div class="col-2 text-center nav_bar">Price</div>
+        </div><br>
+        {% for food in foods %}
+            <form method="post" action="{% url 'removeItem' %}">
+                {% csrf_token %}
+                    <div class="row" >
+                    <input type="hidden" value="{{food.id}}" name="food_id" class="food_id"/>
+                    <div class="col-3 text-center items">{{food.foodtype}}</div>
+                    <div class="col-3 text-center items">{{food.feature}}</div>
+                    <div class="col-2 text-center items">{{food.size}}</div>
+                    <div class="col-2 text-center items" id="price{{food.id}}">{{food.price}}</div>
+                    <button class="col-2 col-sm-3 text-center items BTN smith{{food.id}}" id="smith{{food.id}}">Remove From Cart</button>
+                </div><br/>
+            </form>
+        {% endfor %}
+        </div><hr>
+        <div class="text-center underline bg-light">
+            <h3 class="text-center"><u>Checkout</u></h3>
+            <label>Total: $</label><span class="amount">0</span><br/><br/>
+            <!-- <form> -->
+                <!-- <input class="amount2" type="hidden" name="amount"> -->
+                
+                <a href="https://donate.stripe.com/test_5kAeWVd5MaKsaXufYZ">
+                    <button class="btn btn-success">Purchase</button>
+                </a>
+            <!-- </form> -->
+            <br/><br/>
+        </div>
+        <br/><br/>
+    </div>
+{% endblock %}
